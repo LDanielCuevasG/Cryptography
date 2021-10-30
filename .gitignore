@@ -1,5 +1,8 @@
 Cryptography/bin
 Cryptography/obj
 Cryptography/Keys
+Cryptography/Properties
+Cryptography/Cryptography.csproj.user
 CryptographyConsole/bin
 CryptographyConsole/obj
+

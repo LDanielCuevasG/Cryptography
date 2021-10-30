@@ -9,7 +9,7 @@ namespace CryptographyConsole
 
         static void Main(string[] args)
         {
-            RSAImplement();
+            //RSAImplement();
             AESImplement();
         }
 
@@ -33,10 +33,10 @@ namespace CryptographyConsole
         static void AESImplement() 
         {
             AESClient aesClient = new AESClient();
-            aesClient.GenerateKeys(path);
+            //aesClient.GenerateKeys(path);
             aesClient.LoadKeys(path);
 
-            string dataToEncrypt = "danielcgl10599@gmail.com";
+            string dataToEncrypt = "SERVER=localhost;DATABASE=dbuser;UID=usrFigurePartyAPI;PASSWORD=F1gur3Party$;";
             string dataEncrypt = aesClient.Encrypt(dataToEncrypt);
             Console.WriteLine(dataToEncrypt);
             Console.WriteLine(dataEncrypt);
