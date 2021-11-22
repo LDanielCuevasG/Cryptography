@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace Cryptography
 {
-    public class AESClient
+    public class AESClient : CryptographyClient
     {
+
         private readonly Aes AESService;
 
 
@@ -17,35 +18,35 @@ namespace Cryptography
             AESService = Aes.Create();
         }
 
-        public void GenerateKeys(string path)
+        public override void GenerateKeys(string path)
         {
 
             byte[] keyBytes = AESService.Key;
-            FileStream publicKeyStream = new FileStream(Path.Combine(path, "Key.aes"), FileMode.Create, FileAccess.Write);
+            FileStream publicKeyStream = new FileStream(Path.Combine(path, "AES_Key.aes"), FileMode.Create, FileAccess.Write);
             publicKeyStream.Write(keyBytes, 0, keyBytes.Length);
             publicKeyStream.Close();
 
             byte[] ivKey = AESService.IV;
-            FileStream privateKeyStream = new FileStream(Path.Combine(path, "IV.aes"), FileMode.Create, FileAccess.Write);
+            FileStream privateKeyStream = new FileStream(Path.Combine(path, "AES_IV.aes"), FileMode.Create, FileAccess.Write);
             privateKeyStream.Write(ivKey, 0, ivKey.Length);
             privateKeyStream.Close();
 
         }
 
-        public void LoadKeys(string path)
+        public override void LoadKeys(string path)
         {
-            FileStream keyStream = new FileStream(Path.Combine(path, "Key.aes"), FileMode.Open, FileAccess.Read);
+            FileStream keyStream = new FileStream(Path.Combine(path, "AES_Key.aes"), FileMode.Open, FileAccess.Read);
             byte[] keyBytes = new byte[keyStream.Length];
             keyStream.Read(keyBytes, 0, (int)keyBytes.Length);
             AESService.Key = keyBytes;
 
-            FileStream ivStream = new FileStream(Path.Combine(path, "IV.aes"), FileMode.Open, FileAccess.Read);
+            FileStream ivStream = new FileStream(Path.Combine(path, "AES_IV.aes"), FileMode.Open, FileAccess.Read);
             byte[] ivBytes = new byte[ivStream.Length];
             ivStream.Read(ivBytes, 0, (int)ivBytes.Length);
             AESService.IV = ivBytes;
         }
 
-        public string Encrypt(string data)
+        public override string Encrypt(string data)
         {
             string result = String.Empty;
 
@@ -66,7 +67,7 @@ namespace Cryptography
             return result;
         }
 
-        public string Decrypt(string data)
+        public override string Decrypt(string data)
         {
             string result = String.Empty;
 
@@ -85,5 +86,6 @@ namespace Cryptography
 
             return result;
         }
+
     }
 }
