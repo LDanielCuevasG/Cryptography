@@ -1,8 +1,11 @@
+.vs
 Cryptography/bin
 Cryptography/obj
 Cryptography/Keys
 Cryptography/Properties
 Cryptography/Cryptography.csproj.user
-CryptographyConsole/bin
-CryptographyConsole/obj
+Cryptography.Console/bin
+Cryptography.Console/obj
+Cryptography.Console/Properties
+Cryptography.Console/Cryptography.Console.csproj.user
 
